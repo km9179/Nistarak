@@ -22,7 +22,7 @@ public interface ApiInterface {
             @Field("email") String email,
             @Field("password") String password,
             @Field("adhaar") String uniqueID,
-            @Field("access") Integer level
+            @Field("accessCode") Integer level
     );
 
     @FormUrlEncoded

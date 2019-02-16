@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (EditText) findViewById(R.id.etEmail);
+        email = (EditText) findViewById(R.id.tvEmail);
         password = (EditText) findViewById(R.id.etPassword);
         retrofitClient = RetrofitClient.getInstance();
 

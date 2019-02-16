@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class UserInformation extends AppCompatActivity {
 
     private RetrofitClient retrofitClient;
-    private EditText mName, mPhone, mAddress;
-    private Button btnSave;
+    private TextView mName, mEmail, mAdhaar, mUserType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,18 +18,9 @@ public class UserInformation extends AppCompatActivity {
 
         retrofitClient = RetrofitClient.getInstance();
 
-        mName = (EditText) findViewById(R.id.etUsername);
-        mPhone = (EditText) findViewById(R.id.etPhone);
-        mAddress = (EditText) findViewById(R.id.etAddress);
-
-        btnSave = (Button) findViewById(R.id.btnSaveUserInformation);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                retrofitClient.name = mName.getText().toString();
-                retrofitClient.phone = mPhone.getText().toString();
-                retrofitClient.address = mAddress.getText().toString();
-            }
-        });
+        mName = (TextView) findViewById(R.id.tvUsername);
+        mEmail = (TextView) findViewById(R.id.tvEmail);
+        mAdhaar = (TextView) findViewById(R.id.tvAdhaar);
+        mUserType = (TextView) findViewById(R.id.tvUserType);
     }
 }
