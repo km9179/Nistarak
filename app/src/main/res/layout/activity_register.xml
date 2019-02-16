@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/etNewEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/email"
@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/etNewPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/password"
@@ -34,31 +34,33 @@
 
     <Button
         android:id="@+id/btnRegisterUser"
-        android:layout_width="192dp"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
-        android:text="Register User"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegisterClient"
-        app:layout_constraintEnd_toEndOf="@+id/btnRegisterClient"
+        android:text="User Registration"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegisterHospital"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegisterHospital"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btnRegisterClient"
+        app:layout_constraintStart_toStartOf="@+id/btnRegisterHospital"
         app:layout_constraintTop_toBottomOf="@+id/etNewAdhaar" />
 
     <Button
-        android:id="@+id/btnRegisterClient"
-        android:layout_width="186dp"
+        android:id="@+id/btnRegisterHospital"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
-        android:text="Register Client"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegisterUser"
-        tools:layout_editor_absoluteX="112dp" />
+        android:text="Hospital Registration"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegisterGovernment"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegisterGovernment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btnRegisterGovernment"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterUser" />
 
     <EditText
         android:id="@+id/etNewUsername"
-        android:layout_width="wrap_content"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/etNewEmail"
         app:layout_constraintEnd_toEndOf="@+id/etNewEmail"
         app:layout_constraintHorizontal_bias="0.5"
@@ -67,14 +69,26 @@
 
     <EditText
         android:id="@+id/etNewAdhaar"
-        android:layout_width="wrap_content"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Adhaar"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/btnRegisterUser"
         app:layout_constraintEnd_toEndOf="@+id/btnRegisterUser"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/btnRegisterUser"
         app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />
+
+    <Button
+        android:id="@+id/btnRegisterGovernment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Government Registration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterHospital" />
 </android.support.constraint.ConstraintLayout>

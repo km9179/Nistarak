@@ -21,8 +21,8 @@ public interface ApiInterface {
             @Field("name") String name,
             @Field("email") String email,
             @Field("password") String password,
-            @Field("adhaar") String adhaar
-//            @Field("access") Integer level
+            @Field("adhaar") String uniqueID,
+            @Field("access") Integer level
     );
 
     @FormUrlEncoded

@@ -16,8 +16,8 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText name, email, password, adhaar;
-    private Button btnRegisterUser, btnRegisterClient;
+    private EditText name, email, password, uniqueId;
+    private Button btnRegisterUser, btnRegisterHospital, btnRegisterGovernment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.etNewUsername);
         email = (EditText) findViewById(R.id.etNewEmail);
         password = (EditText) findViewById(R.id.etNewPassword);
-        adhaar = (EditText) findViewById(R.id.etNewAdhaar);
+        uniqueId = (EditText) findViewById(R.id.etNewAdhaar);
 
         btnRegisterUser = (Button)findViewById(R.id.btnRegisterUser);
         btnRegisterUser.setOnClickListener(new View.OnClickListener() {
@@ -35,35 +35,48 @@ public class RegisterActivity extends AppCompatActivity {
                 String _name = name.getText().toString();
                 String _email = email.getText().toString();
                 String _password = password.getText().toString();
-                String _adhaar= adhaar.getText().toString();
+                String _uniqueId = uniqueId.getText().toString();
 
-                validateAndRegister(_name,_email, _password, _adhaar);
+                validateAndRegister(_name, _email, _password, _uniqueId, 0);
             }
         });
 
-        btnRegisterClient = (Button)findViewById(R.id.btnRegisterClient);
-        btnRegisterClient.setOnClickListener(new View.OnClickListener() {
+        btnRegisterHospital = (Button)findViewById(R.id.btnRegisterHospital);
+        btnRegisterHospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String _name = name.getText().toString();
                 String _email = email.getText().toString();
                 String _password = password.getText().toString();
-                String _adhaar= adhaar.getText().toString();
+                String _uniqueId = uniqueId.getText().toString();
 
-                validateAndRegister(_name,_email, _password, _adhaar);
+                validateAndRegister(_name, _email, _password, _uniqueId, 1);
+            }
+        });
+
+        btnRegisterGovernment = (Button)findViewById(R.id.btnRegisterGovernment);
+        btnRegisterGovernment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String _name = name.getText().toString();
+                String _email = email.getText().toString();
+                String _password = password.getText().toString();
+                String _uniqueId = uniqueId.getText().toString();
+
+                validateAndRegister(_name, _email, _password, _uniqueId, 2);
             }
         });
     }
 
-    private void validateAndRegister(String mName, String mEmail, String mPassword, String mAdhaar) {
-        registerProcessWithRetrofit(mName, mEmail, mPassword, mAdhaar);
+    private void validateAndRegister(String mName, String mEmail, String mPassword, String mUniqueId, int level) {
+        registerProcessWithRetrofit(mName, mEmail, mPassword, mUniqueId, level);
     }
 
-    private void registerProcessWithRetrofit(String name, String email, String password, String adhaar) {
+    private void registerProcessWithRetrofit(String name, String email, String password, String uniqueId, int level) {
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .register(name, email, password, adhaar);
+                .register(name, email, password, uniqueId, 0);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
