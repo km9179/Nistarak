@@ -8,22 +8,44 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button btnMap, btnLogin, btnRegister, btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
+        btnMap = (Button) findViewById(R.id.btnMap);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MapsActivity.class));
             }
         });
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+            }
+        });
+
+        btnAdd = (Button) findViewById(R.id.btnRegisterNewCase);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ReportDiseaseCase.class));
+            }
+        });
     }
 }

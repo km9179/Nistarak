@@ -31,4 +31,17 @@ public interface ApiInterface {
             @Field("token") String token
     );
 
+    @FormUrlEncoded
+    @POST("/patient")
+    Call<ResponseBody> newDiseaseCase(
+            @Field("token") String token,
+            @Field("name") String patientName,
+            @Field("diseaseName") String diseaseName,
+            @Field("lat") Double lat,
+            @Field("long") Double lang,
+            @Field("age") Integer age,
+            @Field("adhaaar") String adhaar,
+            @Field("city") String city
+    );
+
 }
