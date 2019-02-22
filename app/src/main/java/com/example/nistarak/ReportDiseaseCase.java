@@ -3,6 +3,7 @@ package com.example.nistarak;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -36,8 +37,16 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.heatmaps.Gradient;
+import com.google.maps.android.heatmaps.HeatmapTileProvider;
+import com.google.maps.android.heatmaps.WeightedLatLng;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,6 +68,8 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
     private LatLng patientLocation;
     private boolean firstTimeFlag = true;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +79,8 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
         etNameOfDisease = (EditText) findViewById(R.id.etNameOfDisease);
         etAdhaarOfPatient = (EditText) findViewById(R.id.etAdhaarOfPatient);
         etAgeOfPatient = (EditText) findViewById(R.id.etAgeOfPatient);
+
+
 
         btnAddCase = (Button) findViewById(R.id.btnAddCase);
         btnAddCase.setOnClickListener(new View.OnClickListener() {
@@ -132,17 +145,25 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
         }
     };
 
-    private final View.OnClickListener clickListener = view -> {
-        if (view.getId() == R.id.currentLocationImageButton && googleMap != null && currentLocation != null) {
-            animateCamera(currentLocation);
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (view.getId() == R.id.currentLocationImageButton && googleMap != null && currentLocation != null) {
+                ReportDiseaseCase.this.animateCamera(currentLocation);
+            }
         }
     };
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
+
         googleMap.setOnMarkerDragListener(this);
+
     }
+
+
+
 
     private void startCurrentLocationUpdates() {
         LocationRequest locationRequest = LocationRequest.create();
@@ -191,6 +212,7 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
     private CameraPosition getCameraPositionWithBearing(LatLng latLng) {
         return new CameraPosition.Builder().target(latLng).zoom(16).build();
     }
+
 
     private void showMarker(@NonNull Location currentLocation) {
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
