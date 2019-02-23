@@ -58,11 +58,13 @@ public class Home extends AppCompatActivity
     private Marker currentLocationMarker;
     private Location currentLocation;
     private boolean firstTimeFlag = true;
+    private RetrofitClient retrofitClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        retrofitClient = RetrofitClient.getInstance();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

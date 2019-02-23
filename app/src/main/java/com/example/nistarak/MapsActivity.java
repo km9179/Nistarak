@@ -1,5 +1,6 @@
 package com.example.nistarak;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -19,15 +20,25 @@ import com.google.maps.android.heatmaps.Gradient;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 import com.google.maps.android.heatmaps.WeightedLatLng;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
+    private String serverResponse = null;
+    private RetrofitClient retrofitClient;
     //Places
     private ArrayList<String> mPlacesArraylist = new ArrayList<>();
     List<String> namesList = Arrays.asList( "Brisbane", "Sydney", "Melbourne", "Perth" ,"Darwin");
@@ -96,6 +107,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        retrofitClient = RetrofitClient.getInstance();
+
         mLatlngArraylist.addAll(mLatlngList);
 
         mWeightedLatlngArraylist.addAll(mWeightedLatlngList);
@@ -107,9 +120,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        get_all_district_data();
     }
 
+    private void get_all_district_data() {
 
+        String dummy = "dummy";
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .get_district_stats(dummy);
+//
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    if(response.body() != null) {
+                        serverResponse = response.body().string();
+                        Toast.makeText(MapsActivity.this, serverResponse+" received", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(MapsActivity.this, "No response from server", Toast.LENGTH_SHORT);
+                    }
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if(serverResponse != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(serverResponse);
+                        retrofitClient.reset();
+                    }
+                    catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MapsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -121,6 +176,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera

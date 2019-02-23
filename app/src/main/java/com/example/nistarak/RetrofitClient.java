@@ -14,8 +14,6 @@ public class RetrofitClient {
     public static String token = null;
     public static int errcode = -1, success = 1;
     public static String name, phone, address;
-    public static LatLng homeLatLng;
-    public static HashMap<String,String >arr = new HashMap<>();
 
     private RetrofitClient() {
         retrofit = new Retrofit.Builder()
@@ -47,12 +45,6 @@ public class RetrofitClient {
 
     public String getAddress() {
         return address;
-    }
-
-    public LatLng getHomeLatLng() {  return homeLatLng; }
-
-    public void setHomeLatLng(double lat, double lng) {
-        homeLatLng = new LatLng(lat, lng);
     }
 
     public ApiInterface getApi() {

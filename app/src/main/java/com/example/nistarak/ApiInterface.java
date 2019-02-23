@@ -36,6 +36,12 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("/fetch/get_district_stats")
+    Call<ResponseBody> get_district_stats(
+            @Field("dummy") String dummy
+    );
+
+    @FormUrlEncoded
     @POST("/patient")
     Call<ResponseBody> newDiseaseCase(
             @Field("token") String token,
@@ -54,5 +60,6 @@ public interface ApiInterface {
             @Part("description")RequestBody description,
             @Part MultipartBody.Part file
     );
+
 
 }
