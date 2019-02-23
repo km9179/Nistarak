@@ -96,9 +96,6 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
         supportMapFragment.getMapAsync(this);
         findViewById(R.id.currentLocationImageButton).setOnClickListener(clickListener);
-
-        if(patientLocation != null)
-        Log.i("Map",patientLocation.toString());
     }
 
     String getAddress(double lat, double lng) {
