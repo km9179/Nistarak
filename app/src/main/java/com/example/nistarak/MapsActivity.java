@@ -5,6 +5,10 @@ import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private String serverResponse = null;
     private RetrofitClient retrofitClient;
+    Spinner mDiseaseSpinner, mAgeSpinner;
     //Places
     private ArrayList<String> mPlacesArraylist = new ArrayList<>();
     List<String> namesList = Arrays.asList( "Brisbane", "Sydney", "Melbourne", "Perth" ,"Darwin");
@@ -101,6 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private HeatmapTileProvider mProvider;
     private TileOverlay mOverlay;
 
+    //Spinner
+    private String selectedDisease,selectedAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,12 +123,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMarkerArrayList.addAll(mMarkerList);
 
         mPlacesArraylist.addAll(namesList);
+
+        mDiseaseSpinner = (Spinner) findViewById(R.id.DiseaseSpinner);
+        mAgeSpinner= (Spinner) findViewById(R.id.AgeSpinner);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         get_all_district_data();
+        mDiseaseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                selectedDisease = parent.getItemAtPosition(position).toString();
+
+                mAgeSpinner.setAdapter(new ArrayAdapter<String>(MapsActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        getResources().getStringArray(R.array.items_Age)));
+                //set divSpinner Visibility to Visible
+                mAgeSpinner.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+                // can leave this empty
+            }
+        });
+
+        mAgeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                selectedAge = parent.getItemAtPosition(position).toString();
+                selectedAge = parent.getItemAtPosition(position).toString();
+                /*
+                    Now that we have both values, lets create a Toast to
+                    show the values on screen
+                */
+                Toast.makeText(MapsActivity.this, "\n Disease: \t " + selectedDisease +
+                        "\n Age: \t" + selectedAge, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+                // can leave this empty
+            }
+
+        });
+
     }
 
     private void get_all_district_data() {
