@@ -51,9 +51,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="242dp"
                 tools:layout_editor_absoluteX="30dp"
-                tools:layout_editor_absoluteY="35dp">
+                tools:layout_editor_absoluteY="35dp"/>
 
+            <WebView
+                android:id="@+id/wvStat5"
+                android:layout_height="242dp"
+                android:layout_width="match_parent">
             </WebView>
+
+            <WebView
+                android:id="@+id/wvStat6"
+                android:layout_height="242dp"
+                android:layout_width="match_parent" />
         </LinearLayout>
     </ScrollView>
 
