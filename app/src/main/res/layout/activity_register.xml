@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/etNewEmail"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/etNewPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etNewPassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/etNewPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etNewUsername" />
+
+    <EditText
+        android:id="@+id/etNewPassword"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/etNewAdhaar"
+        app:layout_constraintEnd_toEndOf="@+id/etNewAdhaar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/etNewAdhaar"
+        app:layout_constraintTop_toBottomOf="@+id/etNewEmail" />
+
+    <Button
+        android:id="@+id/btnRegisterUser"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:text="User Registration"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegisterHospital"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegisterHospital"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btnRegisterHospital"
+        app:layout_constraintTop_toBottomOf="@+id/etNewAdhaar" />
+
+    <Button
+        android:id="@+id/btnRegisterHospital"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:text="Hospital Registration"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegisterGovernment"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegisterGovernment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btnRegisterGovernment"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterUser" />
+
+    <EditText
+        android:id="@+id/etNewUsername"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/etNewEmail"
+        app:layout_constraintEnd_toEndOf="@+id/etNewEmail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/etNewEmail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNewAdhaar"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Adhaar"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegisterUser"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegisterUser"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btnRegisterUser"
+        app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />
+
+    <Button
+        android:id="@+id/btnRegisterGovernment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Government Registration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterHospital" />
+</android.support.constraint.ConstraintLayout>

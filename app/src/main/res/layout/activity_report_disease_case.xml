@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportDiseaseCase">
+
+    <EditText
+        android:id="@+id/etNameOfPatient"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Name of Patient"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/etNameOfDisease"
+        app:layout_constraintEnd_toEndOf="@+id/etNameOfDisease"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNameOfDisease"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name of Disease"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/etAgeOfPatient"
+        app:layout_constraintEnd_toEndOf="@+id/etAgeOfPatient"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/etAgeOfPatient"
+        app:layout_constraintTop_toBottomOf="@+id/etNameOfPatient" />
+
+    <EditText
+        android:id="@+id/etAdhaarOfPatient"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Adhaar No. of Patient"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/mapFragment"
+        app:layout_constraintEnd_toEndOf="@+id/mapFragment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/mapFragment"
+        app:layout_constraintTop_toBottomOf="@+id/etAgeOfPatient" />
+
+    <Button
+        android:id="@+id/btnAddCase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapFragment" />
+
+    <EditText
+        android:id="@+id/etAgeOfPatient"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Age Of Patient"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/etAdhaarOfPatient"
+        app:layout_constraintEnd_toEndOf="@+id/etAdhaarOfPatient"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/etAdhaarOfPatient"
+        app:layout_constraintTop_toBottomOf="@+id/etNameOfDisease" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="364dp"
+        android:layout_height="262dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCase"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddCase"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btnAddCase"
+        app:layout_constraintTop_toBottomOf="@+id/etAdhaarOfPatient" />
+
+    <ImageButton
+        android:id="@+id/currentLocationImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="37dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mapFragment"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+</android.support.constraint.ConstraintLayout>
