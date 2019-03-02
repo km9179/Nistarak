@@ -6,189 +6,314 @@
     android:layout_height="match_parent"
     tools:context=".Main2Activity">
 
-    <EditText
-        android:id="@+id/editText"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Location"
+        android:layout_height="46dp"
+        android:background="@color/col1"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="32dp"
-        android:text="Edit..."
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="267dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:text="Calicut"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp"
+            tools:layout_editor_absoluteX="28dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginBottom="53dp"
-        android:text="Report/Diagnose a patient"
-        app:layout_constraintBottom_toBottomOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="Locate"
+            tools:layout_editor_absoluteX="303dp" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="41dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Disease Name/Symptoms"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="83dp"
-        android:text="Alerts"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="Disease1"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginTop="67dp"
-        android:layout_marginBottom="69dp"
-        android:text="Disease2"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="42dp"
-        android:text="Disease3"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginBottom="51dp"
-        android:text="Notification1"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="276dp"
-        android:layout_marginBottom="276dp"
-        android:text="Notification2"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="255dp"
-        android:text="Reports"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:style="@android:style/TextAppearance.Widget.PopupMenu.Large" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginBottom="57dp"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Report/Diagnose a patient"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="37dp" />
+
+        <EditText
+            android:id="@+id/editText2"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="@color/aluminum"
+            android:backgroundTint="@color/accent"
+            android:gravity="bottom"
+            android:hint="Disease Name/Symptoms"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/monsoon"
+            android:textSize="18dp"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="80dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:layout_marginTop="120dp"
+        android:background="@color/iron"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView9">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Alerts"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="146dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="283dp" />
+                android:id="@+id/textView4"
+                android:layout_width="133dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/accent"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Disease1"
+                android:textColor="@color/primary_darker"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="208dp" />
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="315dp" />
+                android:id="@+id/textView5"
+                android:layout_width="138dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="40dp"
+                android:background="@color/accent"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Disease2"
+                android:textColor="@color/primary_darker"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                tools:layout_editor_absoluteX="143dp"
+                tools:layout_editor_absoluteY="207dp" />
 
             <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="342dp" />
-
+                android:id="@+id/textView6"
+                android:layout_width="135dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="40dp"
+                android:background="@color/accent"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Disease3"
+                android:textColor="@color/primary_darker"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                tools:layout_editor_absoluteX="271dp"
+                tools:layout_editor_absoluteY="207dp" />
         </LinearLayout>
-    </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/lightblue"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingEnd="2dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:text="Notification1"
+            android:textColor="@color/accent"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="282dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/lightblue"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingEnd="2dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:text="Notification2"
+            android:textColor="@color/accent"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="338dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="276dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.041">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Reports"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="403dp"
+            tools:style="@android:style/TextAppearance.Widget.PopupMenu.Large" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:id="@+id/wvStat4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:id="@+id/wvStat3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:id="@+id/wvStat2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:id="@+id/wvStat1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
+
+        <!--<WebView-->
+            <!--android:id="@+id/wvStat3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+        <!--</WebView>-->
+
+        <!--<WebView-->
+            <!--android:id="@+id/wvStat4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+        <!--<WebView-->
+            <!--android:id="@+id/wvStat1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+        <!--<WebView-->
+            <!--android:id="@+id/wvStat2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+        <!--</WebView>-->
+
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:text="View Map(Reports and Alerts)"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="480dp"
+        android:text="View Maps"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView6" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -30,6 +30,12 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("auth/alerts")
+    Call<ResponseBody> alert(
+            @Field("district") String district
+    );
+
+    @FormUrlEncoded
     @POST("auth/logout")
     Call<ResponseBody> logout(
             @Field("token") String token

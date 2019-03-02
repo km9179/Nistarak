@@ -9,6 +9,9 @@
     <color name="accent">#FFFFFF</color>
     <color name="MidnightBlue">#191970</color>
     <color name="Blue">#3666cb</color>
+    <color name="col1">#babbbc</color>
+    <color name="col2">#22ffff</color>
+    <color name="lightblue">#00aaff</color>
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
     <color name="oil">#333333</color>

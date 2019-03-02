@@ -19,7 +19,7 @@
         <activity android:name=".StatsReportActivity"></activity>
         <activity android:name=".DiseaseStatsActivity" />
         <activity android:name=".SymptomsActivity" />
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".Main2Activity"/>
         <activity android:name=".Maps2Activity" />
         <activity
             android:name=".Stats2Activity"
@@ -76,8 +76,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".UserInformation" />
         <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark" />
+            android:name=".LoginActivity"/>
 
         <provider
             android:name=".AssetProvider"

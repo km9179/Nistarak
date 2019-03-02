@@ -55,7 +55,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener,GoogleMap.OnMarkerClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener{
 
     private String serverResponse = null;
     private RetrofitClient retrofitClient;
@@ -244,6 +244,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mMap.setOnMarkerDragListener(this);}
         mAddMarkerToMap(mLatlngArraylist,mMarkerArrayList,mPlacesArraylist);
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                startActivity(new Intent(MapsActivity.this,Maps2Activity.class));
+                return false;
+            }
+        });
         addHeatMap();
         designSpinner();
 
@@ -478,8 +485,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        return false;
-    }
+
 }
