@@ -464,27 +464,27 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
                         if(serverResponse.contains("data")) {
                             Log.d("Alert",jsonObject.getJSONArray("data").toString());
                             JSONArray reader = jsonObject.getJSONArray("data");
-                            Log.
-                            if (reader.length() >= 0) {
+                            Log.d("No : ",reader.length()+"");
+                            if (reader.length() > 0) {
                                 JSONObject temp = reader.getJSONObject(0);
                                 JSONObject temp2 = temp.getJSONObject("_id");
                                 String temp3 = temp2.getString("diseaseName").toUpperCase()+"\nCount:"+temp.getString("diseaseCount");
                                 tvAlert1.setText(temp3);
-                                Log.d("Array1",temp.getString("message")+" "+temp.getString("senderName"));
+//                                Log.d("Array1",temp.getString("message")+" "+temp.getString("senderName"));
                             }
-                            if (reader.length() >= 1) {
+                            if (reader.length() > 1) {
                                 JSONObject temp = reader.getJSONObject(1);
                                 JSONObject temp2 = temp.getJSONObject("_id");
                                 String temp3 = temp2.getString("diseaseName")+"\nCount:"+temp.getString("diseaseCount");
                                 tvAlert2.setText(temp3);
-                                Log.d("Array2",temp.getString("message")+" "+temp.getString("senderName"));
+//                                Log.d("Array2",temp.getString("message")+" "+temp.getString("senderName"));
                             }
-                            if (reader.length() >= 2) {
+                            if (reader.length() > 2) {
                                 JSONObject temp = reader.getJSONObject(2);
                                 JSONObject temp2 = temp.getJSONObject("_id");
                                 String temp3 = temp2.getString("diseaseName")+"\nCount:"+temp.getString("diseaseCount");
                                 tvAlert3.setText(temp3);
-                                Log.d("Array3",temp.getString("message")+" "+temp.getString("senderName"));
+//                                Log.d("Array3",temp.getString("message")+" "+temp.getString("senderName"));
                             }
                         }
                         else {
