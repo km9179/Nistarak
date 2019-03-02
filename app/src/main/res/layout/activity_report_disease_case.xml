@@ -40,10 +40,10 @@
         android:ems="10"
         android:hint="Adhaar No. of Patient"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/mapFragment"
-        app:layout_constraintEnd_toEndOf="@+id/mapFragment"
+        app:layout_constraintBottom_toTopOf="@+id/mapFragment2"
+        app:layout_constraintEnd_toEndOf="@+id/mapFragment2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/mapFragment"
+        app:layout_constraintStart_toStartOf="@+id/mapFragment2"
         app:layout_constraintTop_toBottomOf="@+id/etAgeOfPatient" />
 
     <Button
@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapFragment" />
+        app:layout_constraintTop_toBottomOf="@+id/mapFragment2" />
 
     <EditText
         android:id="@+id/etAgeOfPatient"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etNameOfDisease" />
 
     <fragment
-        android:id="@+id/mapFragment"
+        android:id="@+id/mapFragment2"
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="364dp"
         android:layout_height="262dp"
@@ -89,7 +89,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="37dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mapFragment"
+        app:layout_constraintTop_toTopOf="@+id/mapFragment2"
         app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
 </android.support.constraint.ConstraintLayout>

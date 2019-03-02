@@ -17,18 +17,18 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string-array name="items_Disease">
-        <item>All Disease</item>
+        <item>All</item>
         <item>Malaria</item>
         <item>Diarrhoea</item>
-        <item>Swine Flu</item>
-        <item>Flu</item>
+        <item>SwineFlu</item>
+        <item>Cholera</item>
     </string-array>
 
     <string-array name="items_Age">
-        <item>All Age</item>
-        <item>0 to 10</item>
-        <item>11 to 20</item>
-        <item>21 to 30</item>
-        <item>31 to 40</item>
+        <item>All</item>
+        <item>0&#8211;18</item>
+        <item>18&#8211;34</item>
+        <item>34&#8211;55</item>
+        <item>age55</item>
     </string-array>
 </resources>

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                startActivity(new Intent(MainActivity.this, UserActivity.class));
             }
         });
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this, StatsActivity.class));
+                startActivity(new Intent(MainActivity.this, ReportDiseaseCase.class));
             }
         });
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // startActivity(new Intent(MainActivity.this, ReportDiseaseCase.class));
-                startActivity(new Intent(MainActivity.this, DiseaseStatsActivity.class));
+                startActivity(new Intent(MainActivity.this, ReportDiseaseCase.class));
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Main2Activity.class));
+                startActivity(new Intent(MainActivity.this, UserActivity.class));
             }
         });
 

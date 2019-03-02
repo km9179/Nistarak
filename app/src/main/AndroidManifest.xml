@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StatsReportActivity"></activity>
+        <activity android:name=".StatsReportActivity" />
         <activity android:name=".DiseaseStatsActivity" />
         <activity android:name=".SymptomsActivity" />
-        <activity android:name=".Main2Activity"/>
+        <activity android:name=".UserActivity" />
         <activity android:name=".Maps2Activity" />
         <activity
             android:name=".Stats2Activity"
@@ -75,8 +75,7 @@
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".UserInformation" />
-        <activity
-            android:name=".LoginActivity"/>
+        <activity android:name=".LoginActivity" />
 
         <provider
             android:name=".AssetProvider"

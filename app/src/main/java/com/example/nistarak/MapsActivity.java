@@ -47,8 +47,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -59,7 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private String serverResponse = null;
     private RetrofitClient retrofitClient;
-    Spinner mDiseaseSpinner, mAgeSpinner;
+    private Spinner mDiseaseSpinner, mAgeSpinner;
     private EditText msearchBar;
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
@@ -73,74 +76,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
 
-    //Places
-    private ArrayList<String> mPlacesArraylist = new ArrayList<>();
-    List<String> namesList = Arrays.asList( "Brisbane", "Sydney", "Melbourne", "Perth" ,"Darwin");
-
-    //Location
     private LatLng mLatLng;
-    private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
-
-    private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
-
-    private static final LatLng DARWIN = new LatLng(-12.4634, 130.8456);
-
-    private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
-
-    private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
-
-    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
-
-    private static final LatLng ALICE_SPRINGS = new LatLng(-24.6980, 133.8807);
-
+    private ArrayList<String> mPlacesArraylist = new ArrayList<>();
     private ArrayList<LatLng> mLatlngArraylist = new ArrayList<>();
-    List<LatLng> mLatlngList = Arrays.asList(BRISBANE,SYDNEY,MELBOURNE,PERTH,DARWIN);
-
-
-    private static final WeightedLatLng wBRISBANE = new WeightedLatLng(BRISBANE,50);
-
-    private static final WeightedLatLng wSYDENEY = new WeightedLatLng(SYDNEY,100);
-
-    private static final WeightedLatLng wMELBOURNE = new WeightedLatLng(MELBOURNE,150);
-
-    private static final WeightedLatLng wPERTH = new WeightedLatLng(PERTH,80);
-
-    private static final WeightedLatLng wDARWIN = new WeightedLatLng(DARWIN,200);
-
     private ArrayList<WeightedLatLng> mWeightedLatlngArraylist = new ArrayList<>();
-
-    List<WeightedLatLng> mWeightedLatlngList = Arrays.asList(wBRISBANE,wSYDENEY,wMELBOURNE,wPERTH,wDARWIN);
-
-    //Diseases
-    ArrayList<String> mDiseaseArraylist = new ArrayList<>();
-    List<String> mDiseaseList = Arrays.asList("Malaria");
-
-    //Age
-    ArrayList<Integer> mAgeArraylist = new ArrayList<>();
-
-    //Marker
-    private Marker mPerth;
-
-    private Marker mSydney;
-
-    private Marker mBrisbane;
-
-    private Marker mDarwin;
-
-    private Marker mMelbourne;
     ArrayList<Marker> mMarkerArrayList= new ArrayList<>();
-    List<Marker> mMarkerList = Arrays.asList(mBrisbane,mSydney,mMelbourne,mPerth,mDarwin);
     HashMap<String,Marker> mMarkerMap = new HashMap<>();
 
-    //HeatMap
+    Map<String, Integer> dis = new HashMap<String, Integer>();
+
     private HeatmapTileProvider mProvider;
     private TileOverlay mOverlay;
 
     //Spinner
     private String selectedDisease,selectedAge;
-
-    //CustomInfoWindow
-    private CustomInfoWindowAdapter adapter;
 
     //stats
     HashMap<String,HashMap<String,Integer> > mdistrictStatHashMap;
@@ -150,88 +99,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         msearchBar=(EditText)findViewById(R.id.input_search);
-        adapter = new CustomInfoWindowAdapter(MapsActivity.this);
-        mdistrictStatHashMap=new HashMap<>();
 
         retrofitClient = RetrofitClient.getInstance();
 
-        mLatlngArraylist.addAll(mLatlngList);
-
-        mWeightedLatlngArraylist.addAll(mWeightedLatlngList);
-
-        mMarkerArrayList.addAll(mMarkerList);
-
-        mPlacesArraylist.addAll(namesList);
+        mdistrictStatHashMap=new HashMap<>();
 
         getLocationPermission();
-        get_all_district_data();
+
     }
-
-    private void get_all_district_data() {
-
-        String dummy = "dummy";
-        Call<ResponseBody> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .get_district_stats(dummy);
-//
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    if(response.body() != null) {
-                        serverResponse = response.body().string();
-                        Toast.makeText(MapsActivity.this, serverResponse+" received", Toast.LENGTH_SHORT).show();
-                        Log.d("District",serverResponse);
-                    }
-                    else {
-                        Toast.makeText(MapsActivity.this, "No response from server", Toast.LENGTH_SHORT);
-                    }
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if(serverResponse != null) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(serverResponse);
-                        JSONArray jsonArray=jsonObject.getJSONArray("data");
-                        Log.d("District",jsonArray.toString());
-                        HashMap<String,Integer> hm = new HashMap<>();
-                        for(int i=0;i<jsonArray.length();i++)
-                        {
-                            jsonObject= jsonArray.getJSONObject(i);
-                            String district=jsonObject.getString("district");
-                            JSONArray jsonArray1=jsonObject.getJSONArray("frequency");
-                            for(int j=0;j<jsonArray1.length();j++)
-                            {
-                                 jsonObject=jsonArray1.getJSONObject(j);
-                                 String k= jsonObject.keys().next();
-                                 hm.put(k,jsonObject.getInt(k));
-                                 Log.d("District",k+" "+jsonObject.getString(k));
-                            }
-                            mdistrictStatHashMap.put(district,hm);
-                            //districtStat.put(jsonArray.getString(i),)
-                        }
-                        retrofitClient.reset();
-                    }
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(MapsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
+        get_stats("");
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
 
@@ -242,16 +123,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
-            mMap.setOnMarkerDragListener(this);}
-        mAddMarkerToMap(mLatlngArraylist,mMarkerArrayList,mPlacesArraylist);
+            mMap.setOnMarkerDragListener(this);
+        }
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                startActivity(new Intent(MapsActivity.this,Maps2Activity.class));
+//                startActivity(new Intent(MapsActivity.this,Maps2Activity.class));
                 return false;
             }
         });
-        addHeatMap();
         designSpinner();
 
         //SearchBar
@@ -265,23 +146,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return false;
             }
         });
+
     }
 
     private void addHeatMap() {
-        Log.d("MapActivity: ","Heat Map.");
-        /*List<LatLng> list = null;
-
-        // Get the data: latitude/longitude positions of police stations.
-        try {
-            list = readItems(R.raw.police_stations);
-        } catch (JSONException e) {
-            Toast.makeText(this, "Problem reading list of locations.", Toast.LENGTH_LONG).show();
-        }*/
-
-        // Create a heat map tile provider, passing it the latlngs of the police stations.
         int[] colors = {
-                Color.rgb(102, 225, 0), // green
-                Color.rgb(255, 0, 0)    // red
+                Color.rgb(255, 0, 0), // red
+                Color.rgb(0, 0, 0)    // white
         };
 
         float[] startPoints = {
@@ -290,38 +161,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Gradient gradient = new Gradient(colors, startPoints);
 
+        Log.d("Size ",""+mWeightedLatlngArraylist.size());
         mProvider = new HeatmapTileProvider.Builder()
                 .weightedData(mWeightedLatlngArraylist)
                 .gradient(gradient)
                 .build();
-        // Add a tile overlay to the map, using the heat map tile provider.
-        mProvider.setRadius(50);
+        mProvider.setRadius(100);
         mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
     }
-
-    private void mAddMarkerToMap(ArrayList<LatLng> mArraylistLatlng,ArrayList<Marker> mMarkerArrayList,ArrayList<String> mPlacesArraylist)
-    {
-        Log.d("MapActivity","Markers Added");
-        for( int i=0;i<mArraylistLatlng.size();i++)
-        {
-            if(!mMarkerMap.containsKey(mPlacesArraylist.get(i))) {
-                mMarkerMap.put(mPlacesArraylist.get(i), mMap.addMarker(new MarkerOptions().position(mArraylistLatlng.get(i))
-                        .title(mPlacesArraylist.get(i))
-                        .snippet("Population: 4,137,400\nMalaria-50\nTyphoid-70\n")
-                        .draggable(true)));
-
-
-                mMap.setInfoWindowAdapter(adapter);
-                mMarkerMap.get(mPlacesArraylist.get(i)).setTag(mArraylistLatlng.get(i));
-                //mMarkerMap.get(mPlacesArraylist.get(i)).showInfoWindow();
-
-                Toast.makeText(this, "Size: " + mMarkerMap.size(), Toast.LENGTH_LONG).show();
-            }
-
-        }
-
-    }
-
 
 
     //SearchBar
@@ -414,36 +261,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(MapsActivity.this);
-
-
     }
-
 
     @Override
     public void onMarkerDragStart(Marker marker) {
-
     }
 
     @Override
     public void onMarkerDrag(Marker marker) {
-
     }
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
         latitude = marker.getPosition().latitude;
         longitude = marker.getPosition().longitude;
-        //mLatlngArraylist.add(new LatLng(latitude,longitude));
-        Toast.makeText(this,"New: Lat: "+latitude+" long: "+longitude,Toast.LENGTH_LONG).show();
-
     }
 
     private void designSpinner()
     {
         mDiseaseSpinner = (Spinner) findViewById(R.id.DiseaseSpinner);
         mAgeSpinner= (Spinner) findViewById(R.id.AgeSpinner);
-
-
 
         mDiseaseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -472,7 +309,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 selectedAge = parent.getItemAtPosition(position).toString();
-                selectedAge = parent.getItemAtPosition(position).toString();
 
                 Toast.makeText(MapsActivity.this, "\n Disease: \t " + selectedDisease +
                         "\n Age: \t" + selectedAge, Toast.LENGTH_LONG).show();
@@ -485,5 +321,133 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    void get_stats(String district) {
+        dis.clear();
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("GMT"));
+        String endDate = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DATE;
+        cal.add(Calendar.DATE, -7);
+        String startDate = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DATE;
+        startDate = "2018-10-30";
+        endDate = "2019-03-03";
+        Log.d("date",startDate+" "+endDate);
+
+        String _selectedDisease = "All";
+        String ageRange = "All";
+
+        String District = "";
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .disease(District,startDate,endDate);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    if(response.body() != null) {
+                        serverResponse = response.body().string();
+                    }
+                    else {
+                        Toast.makeText(MapsActivity.this, "No response from server", Toast.LENGTH_SHORT);
+                    }
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if(serverResponse != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(serverResponse);
+
+                        if(serverResponse.contains("errcode")){
+                            retrofitClient.errcode = jsonObject.getInt("errcode");
+                        }
+
+                        if(serverResponse.contains("data")) {
+                            JSONArray reader = jsonObject.getJSONArray("data");
+                            for (int i=0; i<reader.length(); i++) {
+                                JSONObject temp = reader.getJSONObject(i);
+                                JSONObject temp2 = temp.getJSONObject("_id");
+                                if(!dis.containsKey(temp2.getString("city").toLowerCase())) {
+                                    dis.put(temp2.getString("city").toLowerCase(),0);
+                                }
+
+                                if(_selectedDisease.equals("All")) {
+                                    if(ageRange.equals("All")) {
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("diseaseCount"));
+                                    }
+                                    else if(ageRange.equals("0-18")){
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age0to18"));
+                                    }
+                                    else if(ageRange.equals("18-34")){
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age18to34"));
+                                    }
+                                    else if(ageRange.equals("34-55")){
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age34to55"));
+                                    }
+                                    else if(ageRange.equals("above55")){
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age55"));
+                                    }
+                                }
+                                else {
+                                    if(temp2.getString("diseaseName").equals(_selectedDisease)) {
+                                        if(ageRange.equals("All")) {
+                                            dis.put(temp2.getString("city").toLowerCase(), temp.getInt("diseaseCount"));
+                                        }
+                                        else if(ageRange.equals("0-18")){
+                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age0to18"));
+                                        }
+                                        else if(ageRange.equals("18-34")){
+                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age18to34"));
+                                        }
+                                        else if(ageRange.equals("34-55")){
+                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age34to55"));
+                                        }
+                                        else if(ageRange.equals("age55")){
+                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age55"));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            Log.d("Array","Not found");
+                        }
+
+                        for(String key:dis.keySet()) {
+                            String location = key;
+                            List<Address>addressList = null;
+
+                            if (location != null || !location.equals("")) {
+                                Geocoder geocoder = new Geocoder(MapsActivity.this);
+                                try {
+                                    addressList = geocoder.getFromLocationName(location, 1);
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                Address address = addressList.get(0);
+                                mLatLng = new LatLng(address.getLatitude(), address.getLongitude());
+                                mLatlngArraylist.add(mLatLng);
+                                mPlacesArraylist.add(key);
+                                mWeightedLatlngArraylist.add(new WeightedLatLng(mLatLng,dis.get(key)));
+                            }
+                        }
+                        Log.d("Status",mWeightedLatlngArraylist.size()+"");
+                        addHeatMap();
+                    }
+                    catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MapsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }
