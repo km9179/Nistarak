@@ -22,6 +22,11 @@ public interface ApiInterface {
             @Field("dob") String dob
     );
 
+    @FormUrlEncoded
+    @POST("ngo/summary")
+    Call<ResponseBody> ngo_info(
+            @Field("dummy") String dummy
+    );
 
     @FormUrlEncoded
     @POST("auth/login")

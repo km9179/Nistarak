@@ -13,7 +13,7 @@ public class RetrofitClient {
     private Retrofit retrofit;
     public static String token = null;
     public static int errcode = -1, success = 1;
-    public static String name, phone, address;
+    public static String level;
 
     private RetrofitClient() {
         retrofit = new Retrofit.Builder()
@@ -33,18 +33,6 @@ public class RetrofitClient {
         errcode = 0;
         success = 0;
         token = null;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public ApiInterface getApi() {

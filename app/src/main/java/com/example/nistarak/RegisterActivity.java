@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.ResponseBody;
@@ -59,43 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
                 validateAndRegister(_name, _email, _password, _uniqueId,ologinActivity.level_user);
             }
         });
-        btnRegisterUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String _name = name.getText().toString();
-                String _email = email.getText().toString();
-                String _password = password.getText().toString();
-                String _uniqueId = uniqueId.getText().toString();
-
-                validateAndRegister(_name, _email, _password, _uniqueId, 0);
-            }
-        });
-
-        btnRegisterHospital = (Button)findViewById(R.id.btn_hosp_signup);
-        btnRegisterHospital.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String _name = name.getText().toString();
-                String _email = email.getText().toString();
-                String _password = password.getText().toString();
-                String _uniqueId = uniqueId.getText().toString();
-
-                validateAndRegister(_name, _email, _password, _uniqueId, 1);
-            }
-        });
-
-        btnRegisterGovernment = (Button)findViewById(R.id.btn_govt_signup);
-        btnRegisterGovernment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String _name = name.getText().toString();
-                String _email = email.getText().toString();
-                String _password = password.getText().toString();
-                String _uniqueId = uniqueId.getText().toString();
-
-                validateAndRegister(_name, _email, _password, _uniqueId, 2);
-            }
-        });
 
         link_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +87,8 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     if(response.body() != null) {
                         String s = response.body().string();
+                        JSONObject jsonObject = new JSONObject(s);
+
                         Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -128,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
                 catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
