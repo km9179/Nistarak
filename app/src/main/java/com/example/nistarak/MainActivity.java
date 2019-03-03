@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnMap, btnLogin, btnRegister, btnAdd, btnStats, btnStats2;
+    private Button btnMap, btnLogin, btnRegister, btnAdd, btnStats, btnStats2, btnNgo, btnSymptoms,
+    btnStatsReport, btnDiseaseStats;
     private LoginActivity oLoginActivity = new LoginActivity();
 
     @Override
@@ -16,12 +17,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        btnDiseaseStats = findViewById(R.id.btnDisease);
+        btnDiseaseStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DiseaseStatsActivity.class));
+            }
+        });
+
+        btnStatsReport = findViewById(R.id.btnStatsReport);
+        btnStatsReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, StatsReportActivity.class));
+            }
+        });
+
+        btnSymptoms = findViewById(R.id.btnSymptoms);
+        btnSymptoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SymptomsActivity.class));
+            }
+        });
+
         btnMap = findViewById(R.id.btnMap);
 
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, UserActivity.class));
+            }
+        });
+
+        btnNgo = findViewById(R.id.btn_ngo);
+        btnNgo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Maps2Activity.class));
             }
         });
 
@@ -38,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this, Maps2Activity.class));
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
 
@@ -56,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, UserActivity.class));
+                startActivity(new Intent(MainActivity.this, StatsActivity.class));
             }
         });
 

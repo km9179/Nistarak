@@ -97,7 +97,7 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
         tvAlert1 = findViewById(R.id.textView4);
         tvAlert2 = findViewById(R.id.textView5);
         tvAlert3 = findViewById(R.id.textView6);
-        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment2);
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment3);
         supportMapFragment.getMapAsync(this);
 
         update_reports();
@@ -656,7 +656,7 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.currentLocationImageButton && googleMap != null && currentLocation != null) {
+            if (view.getId() == R.id.currentLocationImageButton1 && googleMap != null && currentLocation != null) {
                 UserActivity.this.animateCamera(currentLocation);
             }
         }

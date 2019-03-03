@@ -324,14 +324,14 @@
         tools:layout_editor_absoluteX="0dp">
 
         <fragment
-            android:id="@+id/mapFragment2"
+            android:id="@+id/mapFragment3"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/btnAddCase"
-            app:layout_constraintEnd_toEndOf="@+id/btnAddCase"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddCase2"
+            app:layout_constraintEnd_toEndOf="@+id/btnAddCase2"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/btnAddCase"
+            app:layout_constraintStart_toStartOf="@+id/btnAddCase2"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 

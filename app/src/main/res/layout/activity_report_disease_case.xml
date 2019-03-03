@@ -7,21 +7,21 @@
     tools:context=".ReportDiseaseCase">
 
     <EditText
-        android:id="@+id/etNameOfPatient"
+        android:id="@+id/etNameOfNGO"
         android:layout_width="364dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="Name of Patient"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etNameOfDisease"
-        app:layout_constraintEnd_toEndOf="@+id/etNameOfDisease"
+        app:layout_constraintBottom_toTopOf="@+id/etNameOfDisease2"
+        app:layout_constraintEnd_toEndOf="@+id/etNameOfDisease2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etNameOfDisease"
+        android:id="@+id/etNameOfDisease2"
         android:layout_width="364dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="@+id/etAgeOfPatient"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/etAgeOfPatient"
-        app:layout_constraintTop_toBottomOf="@+id/etNameOfPatient" />
+        app:layout_constraintTop_toBottomOf="@+id/etNameOfNGO" />
 
     <EditText
         android:id="@+id/etAdhaarOfPatient"
@@ -40,14 +40,14 @@
         android:ems="10"
         android:hint="Adhaar No. of Patient"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/mapFragment2"
-        app:layout_constraintEnd_toEndOf="@+id/mapFragment2"
+        app:layout_constraintBottom_toTopOf="@+id/mapFragment3"
+        app:layout_constraintEnd_toEndOf="@+id/mapFragment3"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/mapFragment2"
+        app:layout_constraintStart_toStartOf="@+id/mapFragment3"
         app:layout_constraintTop_toBottomOf="@+id/etAgeOfPatient" />
 
     <Button
-        android:id="@+id/btnAddCase"
+        android:id="@+id/btnAddCase2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapFragment2" />
+        app:layout_constraintTop_toBottomOf="@+id/mapFragment3" />
 
     <EditText
         android:id="@+id/etAgeOfPatient"
@@ -69,27 +69,27 @@
         app:layout_constraintEnd_toEndOf="@+id/etAdhaarOfPatient"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/etAdhaarOfPatient"
-        app:layout_constraintTop_toBottomOf="@+id/etNameOfDisease" />
+        app:layout_constraintTop_toBottomOf="@+id/etNameOfDisease2" />
 
     <fragment
-        android:id="@+id/mapFragment2"
+        android:id="@+id/mapFragment3"
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="364dp"
         android:layout_height="262dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddCase"
-        app:layout_constraintEnd_toEndOf="@+id/btnAddCase"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCase2"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddCase2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btnAddCase"
+        app:layout_constraintStart_toStartOf="@+id/btnAddCase2"
         app:layout_constraintTop_toBottomOf="@+id/etAdhaarOfPatient" />
 
     <ImageButton
-        android:id="@+id/currentLocationImageButton"
+        android:id="@+id/currentLocationImageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="37dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mapFragment2"
+        app:layout_constraintTop_toTopOf="@+id/mapFragment3"
         app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.nistarak;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +50,13 @@ public class Maps2Activity extends AppCompatActivity implements OnMapReadyCallba
     public void onMapReady(GoogleMap mgoogleMap) {
         googleMap = mgoogleMap;
         fetch();
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                startActivity(new Intent(Maps2Activity.this, AddNGOActivity.class));
+                return false;
+            }
+        });
     }
 
 
@@ -122,6 +130,6 @@ public class Maps2Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        return false;
+        return true;
     }
 }

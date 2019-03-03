@@ -58,14 +58,14 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_disease_case);
 
-        etNameOfPatient = (EditText) findViewById(R.id.etNameOfPatient);
-        etNameOfDisease = (EditText) findViewById(R.id.etNameOfDisease);
+        etNameOfPatient = (EditText) findViewById(R.id.etNameOfNGO);
+        etNameOfDisease = (EditText) findViewById(R.id.etNameOfDisease2);
         etAdhaarOfPatient = (EditText) findViewById(R.id.etAdhaarOfPatient);
         etAgeOfPatient = (EditText) findViewById(R.id.etAgeOfPatient);
 
 
 
-        btnAddCase = (Button) findViewById(R.id.btnAddCase);
+        btnAddCase = (Button) findViewById(R.id.btnAddCase2);
         btnAddCase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,9 +76,9 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
             }
         });
 
-        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment2);
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment3);
         supportMapFragment.getMapAsync(this);
-        findViewById(R.id.currentLocationImageButton).setOnClickListener(clickListener);
+        findViewById(R.id.currentLocationImageButton1).setOnClickListener(clickListener);
     }
 
     String getAddress(double lat, double lng) {
@@ -128,7 +128,7 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.currentLocationImageButton && googleMap != null && currentLocation != null) {
+            if (view.getId() == R.id.currentLocationImageButton1 && googleMap != null && currentLocation != null) {
                 ReportDiseaseCase.this.animateCamera(currentLocation);
             }
         }

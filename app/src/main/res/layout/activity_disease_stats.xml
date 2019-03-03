@@ -1,95 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DiseaseStatsActivity">
 
-    <EditText
-        android:id="@+id/tvDistrict"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="32dp"
-        android:text="Edit..."
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/text_currentlocation"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginBottom="53dp"
-        android:text="Report/Diagnose a patient"
-        app:layout_constraintBottom_toBottomOf="@+id/etSymptoms"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:ems="10"
+            android:hint="Location"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/etSymptoms"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="41dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Disease Name/Symptoms"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistrict" />
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginLeft="70dp"
+            android:text="Edit..."
+            app:layout_constraintEnd_toEndOf="@+id/editText"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-    <ScrollView
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="122dp"
+        app:cardBackgroundColor="@color/background_text"
+        tools:layout_editor_absoluteY="65dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:gravity="center"
+            android:text="Report/Diagnose a patient"
+            android:textColor="@color/MidnightBlue"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="0dp"
+            android:background="#ff8f91"
+            android:ems="10"
+            android:hint="Disease Name/Symptoms"
+            android:inputType="textPersonName" />
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="49dp"
-                tools:layout_editor_absoluteY="258dp" />
+                android:text="DiseaseName: "
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/text_disease_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="49dp"
-                tools:layout_editor_absoluteY="215dp" />
+                android:text="Total Number Of cases: "
+                android:layout_margin="10dp"/>
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/text_total_no_cases"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="49dp"
-                tools:layout_editor_absoluteY="178dp" />
+                android:hint="Number"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Deaths: "
+                android:layout_margin="10dp"
+                />
+
+            <TextView
+                android:id="@+id/text_number_of_deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Number"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cases resolved: "
+                android:layout_margin="10dp"
+                />
+
+            <TextView
+                android:id="@+id/text_number_cases_resolved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Number"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_state_of_outbreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start of Outbreak: "
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/text_date_of_outbreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="date"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="466dp"
+        android:layout_marginTop="15dp"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="257dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Symptoms: "
+                android:textStyle="bold"
+                android:textColor="@color/MidnightBlue"
+                />
+
+            <EditText
+                android:id="@+id/text_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Add symptoms"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Preventive Measures"
+                android:textStyle="bold"
+                android:textColor="@color/MidnightBlue"/>
+
+            <EditText
+                android:id="@+id/text_preventive_measures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Add preventive Measures"
+                android:textColor="@color/primary"/>
+
         </LinearLayout>
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

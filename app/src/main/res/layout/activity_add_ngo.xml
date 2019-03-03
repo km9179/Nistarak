@@ -6,4 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".AddNGOActivity">
 
+    <EditText
+        android:id="@+id/etNameOfNGO"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="55dp"
+        android:ems="10"
+        android:hint="Name of NGO"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/etNameOfDisease2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNameOfDisease2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="159dp"
+        android:ems="10"
+        android:hint="Name of Disease"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/currentLocationImageButton1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNameOfNGO" />
+
+    <Button
+        android:id="@+id/btnAddCase2"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="8dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.952" />
+
+    <fragment
+        android:id="@+id/mapFragment3"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="262dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="91dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAddCase2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etNameOfDisease2" />
+
+    <ImageButton
+        android:id="@+id/currentLocationImageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="132dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCase2"
+        app:layout_constraintEnd_toEndOf="@+id/mapFragment3"
+        app:layout_constraintTop_toBottomOf="@+id/etNameOfDisease2"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
 </android.support.constraint.ConstraintLayout>
