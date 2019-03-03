@@ -52,6 +52,12 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("/graph")
+    Call<ResponseBody> graph(
+        @Field("dist") String district
+    );
+
+    @FormUrlEncoded
     @POST("fetch/patientSummary")
     Call<ResponseBody> disease(
             @Field("district") String District,
@@ -82,7 +88,7 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("/patient")
+    @POST("/report/patient")
     Call<ResponseBody> newDiseaseCase(
             @Field("token") String token,
             @Field("name") String patientName,

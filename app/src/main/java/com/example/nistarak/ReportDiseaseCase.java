@@ -1,6 +1,8 @@
 package com.example.nistarak;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -34,9 +36,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener {
     EditText etNameOfPatient, etNameOfDisease, etAgeOfPatient, etAdhaarOfPatient;
@@ -58,12 +68,11 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_disease_case);
 
+        retrofitClient = RetrofitClient.getInstance();
         etNameOfPatient = (EditText) findViewById(R.id.etNameOfNGO);
         etNameOfDisease = (EditText) findViewById(R.id.etNameOfDisease2);
         etAdhaarOfPatient = (EditText) findViewById(R.id.etAdhaarOfPatient);
         etAgeOfPatient = (EditText) findViewById(R.id.etAgeOfPatient);
-
-
 
         btnAddCase = (Button) findViewById(R.id.btnAddCase2);
         btnAddCase.setOnClickListener(new View.OnClickListener() {
@@ -107,10 +116,7 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
         return city;
     }
 
-
-
     private final LocationCallback mLocationCallback = new LocationCallback() {
-
         @Override
         public void onLocationResult(LocationResult locationResult) {
             super.onLocationResult(locationResult);
@@ -245,40 +251,33 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
     public void onMarkerDrag(Marker marker) {
     }
 
-
-
-
-    private void addCase(String patienName, String diseaseName, Integer age, String adhaaar,
+    private void addCase(String patientName, String diseaseName, Integer age, String adhaar,
                          Double lat, Double lang, String city) {
-        Toast.makeText(this,"Called ",Toast.LENGTH_LONG);
-//        Call<ResponseBody> call = RetrofitClient
-//                .getInstance()
-//                .getApi()
-//                .newDiseaseCase(retrofitClient.token, patienName, diseaseName, lat, lang, age, adhaaar, city);
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    if(response.body() != null) {
-//                        String s = response.body().string();
-//                        Toast.makeText(ReportDiseaseCase.this, s, Toast.LENGTH_SHORT).show();
-//                    }
-//                    else {
-//                        Toast.makeText(ReportDiseaseCase.this,"No response from server",Toast.LENGTH_SHORT);
-//                    }
-//                }
-//                catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Toast.makeText(ReportDiseaseCase.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        Log.d("here","here");
+        String token = "1551504985549";
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .newDiseaseCase(token,patientName,diseaseName,lat,lang,age,adhaar,city);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            final ProgressDialog progressDialog = new ProgressDialog(ReportDiseaseCase.this);
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                progressDialog.dismiss();
+                if(response.body() != null) {
+                    Toast.makeText(ReportDiseaseCase.this, response.body().toString()+" Done", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(ReportDiseaseCase.this, "No response from server", Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(ReportDiseaseCase.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-
 }

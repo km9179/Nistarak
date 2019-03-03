@@ -78,6 +78,7 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
     RetrofitClient retrofitClient;
     String serverResponse;
     TextView tvNotification1, tvNotification2, tvAlert1, tvAlert2, tvAlert3;
+    private boolean locFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,7 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment3);
         supportMapFragment.getMapAsync(this);
 
+        district.setText("Kozikhode");
         update_reports();
 
         viewMap.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +110,6 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
                 startActivity(new Intent(UserActivity.this, MapsActivity.class));
             }
         });
-
         etSymptoms.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -134,6 +135,10 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
                 mapLayout.setLayoutParams(params);
             }
         });
+        if(locFlag) {
+            locFlag = false;
+            changeLoc.performClick();
+        }
     }
 
     void fillDatahash() {

@@ -8,28 +8,23 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="624dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <WebView
-                android:id="@+id/wvStat7"
-                android:layout_width="match_parent"
-                android:layout_height="222dp" />
 
             <WebView
                 android:id="@+id/wvStat8"
@@ -43,15 +38,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="242dp"
                 tools:layout_editor_absoluteY="537dp">
-
-            </WebView>
-
-            <WebView
-                android:id="@+id/wvStat9"
-                android:layout_width="412dp"
-                android:layout_height="226dp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
 
             </WebView>
 

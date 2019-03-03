@@ -101,8 +101,6 @@ public class AddNGOActivity extends AppCompatActivity implements OnMapReadyCallb
         return city;
     }
 
-
-
     private final LocationCallback mLocationCallback = new LocationCallback() {
 
         @Override
@@ -123,7 +121,7 @@ public class AddNGOActivity extends AppCompatActivity implements OnMapReadyCallb
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.currentLocationImageButton1 && googleMap != null && currentLocation != null) {
-                AddNGOActivity.this.animateCamera(currentLocation);
+//                AddNGOActivity.this.animateCamera(currentLocation);
             }
         }
     };
