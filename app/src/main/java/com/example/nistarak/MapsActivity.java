@@ -60,6 +60,9 @@ import retrofit2.Response;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener{
 
+
+    String _selectedDisease;
+    String ageRange;
     private String serverResponse = null;
     private RetrofitClient retrofitClient;
     private Spinner mDiseaseSpinner, mAgeSpinner;
@@ -111,8 +114,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
-        mMap = googleMap;
         get_stats("");
+        mMap = googleMap;
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
 
@@ -161,13 +164,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Gradient gradient = new Gradient(colors, startPoints);
 
-        Log.d("Size ",""+mWeightedLatlngArraylist.size());
-        mProvider = new HeatmapTileProvider.Builder()
-                .weightedData(mWeightedLatlngArraylist)
-                .gradient(gradient)
-                .build();
-        mProvider.setRadius(100);
-        mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+        if(mWeightedLatlngArraylist.size() > 0) {
+            mProvider = new HeatmapTileProvider.Builder()
+                    .weightedData(mWeightedLatlngArraylist)
+                    .gradient(gradient)
+                    .build();
+            mProvider.setRadius(100);
+            mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+        }
     }
 
 
@@ -292,8 +296,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mAgeSpinner.setAdapter(new ArrayAdapter<String>(MapsActivity.this,
                         android.R.layout.simple_spinner_dropdown_item,
                         getResources().getStringArray(R.array.items_Age)));
-                //set divSpinner Visibility to Visible
-                mAgeSpinner.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -312,6 +314,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 Toast.makeText(MapsActivity.this, "\n Disease: \t " + selectedDisease +
                         "\n Age: \t" + selectedAge, Toast.LENGTH_LONG).show();
+                get_stats("");
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent)
@@ -332,8 +335,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         endDate = "2019-03-03";
         Log.d("date",startDate+" "+endDate);
 
-        String _selectedDisease = "All";
-        String ageRange = "All";
+
+        _selectedDisease = selectedDisease;
+        ageRange = selectedAge;
+        if(ageRange == null) ageRange="all";
+        if(_selectedDisease == null) _selectedDisease="all";
 
         String District = "";
         Call<ResponseBody> call = RetrofitClient
@@ -360,64 +366,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     try {
                         JSONObject jsonObject = new JSONObject(serverResponse);
 
-                        if(serverResponse.contains("errcode")){
+                        if (serverResponse.contains("errcode")) {
                             retrofitClient.errcode = jsonObject.getInt("errcode");
                         }
 
-                        if(serverResponse.contains("data")) {
+                        if (serverResponse.contains("data")) {
                             JSONArray reader = jsonObject.getJSONArray("data");
-                            for (int i=0; i<reader.length(); i++) {
+                            for (int i = 0; i < reader.length(); i++) {
                                 JSONObject temp = reader.getJSONObject(i);
                                 JSONObject temp2 = temp.getJSONObject("_id");
-                                if(!dis.containsKey(temp2.getString("city").toLowerCase())) {
-                                    dis.put(temp2.getString("city").toLowerCase(),0);
+                                if (!dis.containsKey(temp2.getString("city").toLowerCase())) {
+                                    dis.put(temp2.getString("city").toLowerCase(), 0);
                                 }
 
-                                if(_selectedDisease.equals("All")) {
-                                    if(ageRange.equals("All")) {
-                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("diseaseCount"));
+                                if (_selectedDisease.toLowerCase().equals("all")) {
+                                    if (ageRange.equals("all")) {
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase()) + temp.getInt("diseaseCount"));
+                                    } else if (ageRange.equals("0-18")) {
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase()) + temp.getInt("age0to18"));
+                                    } else if (ageRange.equals("18-34")) {
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase()) + temp.getInt("age18to34"));
+                                    } else if (ageRange.equals("34-55")) {
+                                        Log.d("Maps", "here");
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase()) + temp.getInt("age34to55"));
+                                    } else if (ageRange.equals("age55")) {
+                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase()) + temp.getInt("age55"));
                                     }
-                                    else if(ageRange.equals("0-18")){
-                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age0to18"));
-                                    }
-                                    else if(ageRange.equals("18-34")){
-                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age18to34"));
-                                    }
-                                    else if(ageRange.equals("34-55")){
-                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age34to55"));
-                                    }
-                                    else if(ageRange.equals("above55")){
-                                        dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age55"));
-                                    }
-                                }
-                                else {
-                                    if(temp2.getString("diseaseName").equals(_selectedDisease)) {
-                                        if(ageRange.equals("All")) {
+                                } else {
+                                    Log.d("Hey", "sorry");
+                                    if (temp2.getString("diseaseName").toLowerCase().equals(_selectedDisease)) {
+                                        Log.d("Matched", temp2.getString("diseaseName"));
+                                        if (ageRange.equals("all")) {
                                             dis.put(temp2.getString("city").toLowerCase(), temp.getInt("diseaseCount"));
-                                        }
-                                        else if(ageRange.equals("0-18")){
-                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age0to18"));
-                                        }
-                                        else if(ageRange.equals("18-34")){
-                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age18to34"));
-                                        }
-                                        else if(ageRange.equals("34-55")){
-                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age34to55"));
-                                        }
-                                        else if(ageRange.equals("age55")){
-                                            dis.put(temp2.getString("city").toLowerCase(), dis.get(temp2.getString("city").toLowerCase())+temp.getInt("age55"));
+                                        } else if (ageRange.equals("0-18")) {
+                                            dis.put(temp2.getString("city").toLowerCase(), temp.getInt("age0to18"));
+                                        } else if (ageRange.equals("18-34")) {
+                                            dis.put(temp2.getString("city").toLowerCase(), temp.getInt("age18to34"));
+                                        } else if (ageRange.equals("34-55")) {
+                                            dis.put(temp2.getString("city").toLowerCase(), temp.getInt("age34to55"));
+                                        } else if (ageRange.equals("age55")) {
+                                            dis.put(temp2.getString("city").toLowerCase(), temp.getInt("age55"));
                                         }
                                     }
                                 }
                             }
+                        } else {
+                            Log.d("Array", "Not found");
                         }
-                        else {
-                            Log.d("Array","Not found");
-                        }
-
-                        for(String key:dis.keySet()) {
+                        mWeightedLatlngArraylist.clear();
+                        mLatlngArraylist.clear();
+                        mPlacesArraylist.clear();
+                        mLatLng = null;
+                        for (String key : dis.keySet()) {
                             String location = key;
-                            List<Address>addressList = null;
+                            List<Address> addressList = null;
 
                             if (location != null || !location.equals("")) {
                                 Geocoder geocoder = new Geocoder(MapsActivity.this);
@@ -427,17 +429,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                Address address = addressList.get(0);
-                                mLatLng = new LatLng(address.getLatitude(), address.getLongitude());
-                                mLatlngArraylist.add(mLatLng);
-                                mPlacesArraylist.add(key);
-                                mWeightedLatlngArraylist.add(new WeightedLatLng(mLatLng,dis.get(key)));
+                                if (addressList.size() > 0) {
+                                    Address address = addressList.get(0);
+                                    mLatLng = new LatLng(address.getLatitude(), address.getLongitude());
+                                    mLatlngArraylist.add(mLatLng);
+                                    mPlacesArraylist.add(key);
+                                    mWeightedLatlngArraylist.add(new WeightedLatLng(mLatLng, dis.get(key)));
+                                }
                             }
                         }
-                        Log.d("Status",mWeightedLatlngArraylist.size()+"");
-                        addHeatMap();
-                    }
-                    catch (JSONException e) {
+                        for(int i=0; i<mLatlngArraylist.size(); i++) {
+                            System.out.println(mLatlngArraylist.get(i)+" "+mPlacesArraylist.get(i)+" "+dis.get(mPlacesArraylist.get(i)));
+                        }
+                        if (mWeightedLatlngArraylist.size() > 0) {
+//                            addHeatMap();
+                            if(mOverlay != null)
+                                mOverlay.remove();
+                            addHeatMap();
+                        }
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }

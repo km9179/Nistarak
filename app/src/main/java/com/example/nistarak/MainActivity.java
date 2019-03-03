@@ -9,13 +9,21 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnMap, btnLogin, btnRegister, btnAdd, btnStats, btnStats2, btnNgo, btnSymptoms,
-    btnStatsReport, btnDiseaseStats;
+    btnStatsReport, btnDiseaseStats, btnGovt;
     private LoginActivity oLoginActivity = new LoginActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnGovt = findViewById(R.id.btnGovt);
+        btnGovt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GovernmentActivity.class));
+            }
+        });
 
 
         btnDiseaseStats = findViewById(R.id.btnDisease);
@@ -66,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
+
+
 
         btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {

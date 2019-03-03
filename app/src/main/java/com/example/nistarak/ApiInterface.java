@@ -72,6 +72,16 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("/notification/create")
+    Call<ResponseBody> add_notification(
+            @Field("token") String token,
+            @Field("notification") String notice,
+            @Field("target") String target,
+            @Field("district") String loc
+    );
+
+
+    @FormUrlEncoded
     @POST("/patient")
     Call<ResponseBody> newDiseaseCase(
             @Field("token") String token,

@@ -9,7 +9,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="624dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -27,10 +27,33 @@
             android:orientation="vertical">
 
             <WebView
+                android:id="@+id/wvStat7"
+                android:layout_width="match_parent"
+                android:layout_height="222dp" />
+
+            <WebView
+                android:id="@+id/wvStat8"
+                android:layout_width="396dp"
+                android:layout_height="210dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <WebView
                 android:id="@+id/wvStat1"
                 android:layout_width="match_parent"
                 android:layout_height="242dp"
-                tools:layout_editor_absoluteY="537dp" />
+                tools:layout_editor_absoluteY="537dp">
+
+            </WebView>
+
+            <WebView
+                android:id="@+id/wvStat9"
+                android:layout_width="412dp"
+                android:layout_height="226dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+            </WebView>
 
             <WebView
                 android:id="@+id/wvStat2"
@@ -51,18 +74,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="242dp"
                 tools:layout_editor_absoluteX="30dp"
-                tools:layout_editor_absoluteY="35dp"/>
+                tools:layout_editor_absoluteY="35dp" />
 
             <WebView
                 android:id="@+id/wvStat5"
-                android:layout_height="242dp"
-                android:layout_width="match_parent">
-            </WebView>
+                android:layout_width="match_parent"
+                android:layout_height="242dp"></WebView>
 
             <WebView
                 android:id="@+id/wvStat6"
-                android:layout_height="242dp"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="242dp" />
         </LinearLayout>
     </ScrollView>
 

@@ -427,7 +427,6 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
         String startDate = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DATE;
         startDate = "2018-10-30";
         endDate = "2019-03-03";
-        Log.d("date",startDate+" "+endDate);
 
         String District = district.toLowerCase();
         Call<ResponseBody> call = RetrofitClient
@@ -509,7 +508,7 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .notification(district);
+                .notification(district.toLowerCase());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -568,9 +567,9 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
     }
 
     String getAddress(double lat, double lng) {
-        String city = "";
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        String city = "No Place selected";
         try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
             Address obj = addresses.get(0);
             String add = obj.getAddressLine(0);
@@ -581,8 +580,6 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
             add = add + "\n" + obj.getSubAdminArea();
             add = add + "\n" + obj.getLocality();
             add = add + "\n" + obj.getSubThoroughfare();
-
-            Log.v("IGA", "Address" + add);
 
             city = obj.getSubAdminArea();
         } catch (IOException e) {
@@ -604,6 +601,13 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
         }
         Log.d("Check",symptoms.toString());
 
+        symptoms.clear();
+//        for(int i=1; i<=15; i++) {
+//            if(Math.random() > 0.7) symptoms.add(i);
+//        }
+        symptoms.add(9);
+        symptoms.add(10);
+
         String dob="1990";
         String gender="male";
 
@@ -618,6 +622,7 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
                 try {
                     if(response.body() != null) {
                         serverResponse = response.body().string();
+                        Log.e("symptoms",serverResponse);
                         Toast.makeText(UserActivity.this, serverResponse+" received", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -795,7 +800,6 @@ public class UserActivity extends AppCompatActivity  implements OnMapReadyCallba
         webView6 = findViewById(R.id.wvStat6);
         webView6.getSettings().setJavaScriptEnabled(true);
         webView6.loadUrl("https://thingspeak.com/apps/plugins/275063?fbclid=IwAR3iyoKA5dXfwfkbAGvVULNQVW3FcyJUl-MmkhfsMjAt7MzOl1b_Ft14QNI");
-
     }
 
 

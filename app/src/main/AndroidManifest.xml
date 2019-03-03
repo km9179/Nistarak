@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddNGOActivity"></activity>
+        <activity android:name=".GovernmentActivity"></activity>
+        <activity android:name=".AddNGOActivity" />
         <activity android:name=".StatsReportActivity" />
         <activity android:name=".DiseaseStatsActivity" />
         <activity android:name=".SymptomsActivity" />

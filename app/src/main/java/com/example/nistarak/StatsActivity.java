@@ -6,7 +6,7 @@ import android.webkit.WebView;
 
 public class StatsActivity extends AppCompatActivity {
 
-    WebView webView1, webView2, webView3, webView4, webView5, webView6;
+    WebView webView1, webView2, webView3, webView4, webView5, webView6, webView7, webView8, webView9;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,5 +36,16 @@ public class StatsActivity extends AppCompatActivity {
         webView6.getSettings().setJavaScriptEnabled(true);
         webView6.loadUrl("https://thingspeak.com/channels/710965/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15");
 
+        webView7 = findViewById(R.id.wvStat7);
+        webView7.getSettings().setJavaScriptEnabled(true);
+        webView7.loadUrl("https://thingspeak.com/apps/plugins/275056");
+
+        webView8 = findViewById(R.id.wvStat8);
+        webView8.getSettings().setJavaScriptEnabled(true);
+        webView8.loadUrl("https://thingspeak.com/apps/plugins/276832");
+
+        webView9 = findViewById(R.id.wvStat9);
+        webView9.getSettings().setJavaScriptEnabled(true);
+        webView9.loadUrl("https://thingspeak.com/apps/plugins/275056");
     }
 }

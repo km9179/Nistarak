@@ -93,5 +93,15 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/btnStatsReport"
         app:layout_constraintStart_toEndOf="@+id/btnStatsReport" />
 
+    <Button
+        android:id="@+id/btnGovt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="52dp"
+        android:text="Govt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
