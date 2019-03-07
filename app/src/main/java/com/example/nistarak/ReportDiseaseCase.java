@@ -255,6 +255,8 @@ public class ReportDiseaseCase extends AppCompatActivity implements OnMapReadyCa
                          Double lat, Double lang, String city) {
         Log.d("here","here");
         String token = "1551504985549";
+        Log.d("Msg",token+" "+patientName+" "+diseaseName+" "+lat+" "+lang+" "+age+" "+adhaar+" "+city);
+
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getApi()

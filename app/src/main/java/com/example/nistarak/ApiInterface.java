@@ -94,9 +94,9 @@ public interface ApiInterface {
             @Field("name") String patientName,
             @Field("diseaseName") String diseaseName,
             @Field("lat") Double lat,
-            @Field("long") Double lang,
+            @Field("lon") Double lang,
             @Field("age") Integer age,
-            @Field("adhaaar") String adhaar,
+            @Field("adhaar") String adhaar,
             @Field("city") String city
     );
 
