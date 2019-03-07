@@ -258,7 +258,6 @@ public class Home extends AppCompatActivity
 
         if (currentLocationMarker == null) {
             currentLocationMarker = googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker()).position(latLng).title("Your Location"));
-
         }
     }
 
